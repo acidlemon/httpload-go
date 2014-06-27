@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/acidlemon/go-httpload/httpload"
+	"github.com/acidlemon/httpload-go/httpload"
 	"flag"
 	"fmt"
 	"os"

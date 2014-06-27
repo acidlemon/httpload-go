@@ -119,11 +119,11 @@ TIMERLOOP:
 	wg.Wait()
 
 	// result!
-	fmt.Println("result: score= ", float64(count)/float64(config.Seconds),
-		" req/sec, statusCode= ", rescount, ", total req count=", count, ", ")
-	fmt.Println("result: transfered= ", bytecounts, "mean=",
-		float64(bytecounts)/float64(config.Seconds), " bytes/sec, ",
-		float64(bytecounts)/float64(count), " bytes/req ")
+	fmt.Printf("result: score= %.2f req/sec, statusCode=%v, total req count=%d\n",
+		float64(count)/float64(config.Seconds), rescount, count)
+	fmt.Printf("result: transfered: %d bytes, mean: %.2f bytes/sec, %.2f bytes/req \n", bytecounts,
+		float64(bytecounts)/float64(config.Seconds),
+		float64(bytecounts)/float64(count))
 }
 
 func doHttpLoad(id int, client *http.Client, t *task, res chan *result) {

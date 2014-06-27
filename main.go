@@ -47,6 +47,14 @@ func openUrlFile(path string) []string {
 	for {
 		line, isPrefix, err := r.ReadLine()
 
+		if err == io.EOF {
+			break
+		}
+
+		if len(line) < 3 {
+			continue
+		}
+
 		if len(line) > 0 && err != nil {
 			fmt.Fprintf(os.Stderr, "cat: error %v\n", err)
 			os.Exit(1)
@@ -57,9 +65,6 @@ func openUrlFile(path string) []string {
 			os.Exit(1)
 		}
 
-		if err == io.EOF {
-			break
-		}
 
 		urllist = append(urllist, string(line))
 	}

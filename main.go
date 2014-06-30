@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/acidlemon/httpload-go/httpload"
+	"bufio"
 	"flag"
 	"fmt"
-	"os"
+	"github.com/acidlemon/httpload-go/httpload"
 	"io"
-	"bufio"
+	"os"
 )
 
 func main() {
@@ -32,9 +32,7 @@ func main() {
 
 	httpload.Start(*conf)
 
-
 }
-
 
 func openUrlFile(path string) []string {
 	f, err := os.Open(path)
@@ -67,10 +65,8 @@ func openUrlFile(path string) []string {
 			os.Exit(1)
 		}
 
-
 		urllist = append(urllist, string(line))
 	}
 
 	return urllist
 }
-

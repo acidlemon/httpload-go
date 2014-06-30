@@ -32,7 +32,7 @@ func Start(config Config) {
 	// spawn workers
 	var wg sync.WaitGroup
 	for i := 0; i < config.Parallel; i++ {
-		go func(id int, queue chan *task, res chan *result) {			
+		go func(id int, queue chan *task, res chan *result) {
 			tr := &http.Transport{
 				DisableKeepAlives: !config.KeepAlive,
 			}

@@ -9,9 +9,10 @@ import (
 )
 
 type Config struct {
-	Parallel int
-	Seconds  int
-	Urls     []string
+	Parallel  int
+	Seconds   int
+	Urls      []string
+	KeepAlive bool
 }
 
 type task struct {
@@ -31,9 +32,9 @@ func Start(config Config) {
 	// spawn workers
 	var wg sync.WaitGroup
 	for i := 0; i < config.Parallel; i++ {
-		go func(id int, queue chan *task, res chan *result) {
+		go func(id int, queue chan *task, res chan *result) {			
 			tr := &http.Transport{
-				DisableKeepAlives: true,
+				DisableKeepAlives: !config.KeepAlive,
 			}
 			client := &http.Client{Transport: tr}
 			var t *task

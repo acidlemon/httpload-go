@@ -12,6 +12,7 @@ import (
 func main() {
 	var parallel *int = flag.Int("parallel", 10, "parallel")
 	var seconds *int = flag.Int("seconds", 10, "seconds")
+	var keepalive *bool = flag.Bool("keepalive", false, "keepalive")
 	flag.Parse()
 
 	urlfile := flag.Arg(0)
@@ -27,6 +28,7 @@ func main() {
 	conf.Parallel = *parallel
 	conf.Seconds = *seconds
 	conf.Urls = openUrlFile(urlfile)
+	conf.KeepAlive = *keepalive
 
 	httpload.Start(*conf)
 

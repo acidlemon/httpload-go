@@ -29,10 +29,6 @@ func Start(config Config) {
 	queue := make(chan *task)
 	res := make(chan *result)
 
-	// enable All CPU
-	ncpu := runtime.NumCPU()
-	runtime.GOMAXPROCS(ncpu)
-
 	// spawn workers
 	var wg sync.WaitGroup
 	for i := 0; i < config.Parallel; i++ {
